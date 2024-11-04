@@ -74,13 +74,13 @@ const TaskListView = () => {
 const ScoreItem = () => {
   return (
     <>
-      <div className="bg-blue-100 p-4 rounded-md text-center w-full md:w-1/2 mb-2 md:mb-0">
-        <span className="text-5xl md:text-6xl font-bold">1</span>
-        <p className="text-gray-600">タスク進捗スコア</p>
+      <div className="bg-green-100 p-4 rounded-md text-center w-3/4 md:w-1/2 space-y-3 mx-auto mb-3 md:mb-0">
+        <span className="text-5xl md:text-6xl font-bold font-mono">1</span>
+        <p className="text-green-500 font-semibold">タスク進捗スコア</p>
       </div>
-      <div className="bg-red-200 p-4 rounded-md text-center w-full md:w-1/2">
-        <span className="text-5xl md:text-6xl font-bold">2</span>
-        <p className="text-gray-600">全タスク-1のスコア</p>
+      <div className="bg-red-200 p-4 rounded-md text-center w-3/4 md:w-1/2 space-y-3 mx-auto">
+        <span className="text-5xl md:text-6xl font-bold font-mono">2</span>
+        <p className="text-red-500 font-semibold">全タスク-1のスコア</p>
       </div>
     </>
   );
@@ -89,11 +89,11 @@ const ScoreItem = () => {
 const ScoreBoard = () => {
   return (
     <>
-      <section className="mb-8">
-        <h2 className="text-xl md:text-2xl text-center font-semibold text-gray-700 mb-4">
+      <section className="mb-8 max-w-xl md:max-w-2xl w-full">
+        <h2 className="text-xl md:text-2xl text-center font-semibold text-gray-700 mb-7">
           ・ 現在のスコア
         </h2>
-        <div className="flex flex-col md:flex-row md:space-x-8">
+        <div className="flex flex-col md:flex-row md:space-x-6">
           <ScoreItem />
         </div>
       </section>
