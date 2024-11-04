@@ -27,19 +27,6 @@ const InputTask = () => {
   );
 };
 
-const TaskListView = () => {
-  return (
-    <>
-      <section className="mb-8 max-w-xl w-full">
-        <h2 className="text-xl md:text-2xl text-center font-semibold text-gray-700 mb-6">
-          ・ 完了したらチェックするだけ !
-        </h2>
-        <TaskListRow />
-      </section>
-    </>
-  );
-};
-
 const TaskListRow = () => {
   return (
     <div className="w-full">
@@ -71,22 +58,43 @@ const TaskListRow = () => {
   );
 };
 
+const TaskListView = () => {
+  return (
+    <>
+      <section className="mb-10 max-w-xl w-full">
+        <h2 className="text-xl md:text-2xl text-center font-semibold text-gray-700 mb-6">
+          ・ 終わったらチェック !
+        </h2>
+        <TaskListRow />
+      </section>
+    </>
+  );
+};
+
+const ScoreItem = () => {
+  return (
+    <>
+      <div className="bg-blue-100 p-4 rounded-md text-center w-full md:w-1/2 mb-2 md:mb-0">
+        <span className="text-5xl md:text-6xl font-bold">1</span>
+        <p className="text-gray-600">タスク進捗スコア</p>
+      </div>
+      <div className="bg-red-200 p-4 rounded-md text-center w-full md:w-1/2">
+        <span className="text-5xl md:text-6xl font-bold">2</span>
+        <p className="text-gray-600">全タスク-1のスコア</p>
+      </div>
+    </>
+  );
+};
+
 const ScoreBoard = () => {
   return (
     <>
       <section className="mb-8">
         <h2 className="text-xl md:text-2xl text-center font-semibold text-gray-700 mb-4">
-          ・現在のスコア
+          ・ 現在のスコア
         </h2>
         <div className="flex flex-col md:flex-row md:space-x-8">
-          <div className="bg-blue-100 p-4 rounded-md text-center w-full md:w-1/2 mb-2 md:mb-0">
-            <span className="text-5xl md:text-6xl font-bold">1</span>
-            <p className="text-gray-600">タスク進捗スコア</p>
-          </div>
-          <div className="bg-red-200 p-4 rounded-md text-center w-full md:w-1/2">
-            <span className="text-5xl md:text-6xl font-bold">2</span>
-            <p className="text-gray-600">全タスク-1のスコア</p>
-          </div>
+          <ScoreItem />
         </div>
       </section>
     </>
