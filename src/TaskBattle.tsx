@@ -13,51 +13,61 @@ const Title = () => {
 const InputTask = () => {
   return (
     <>
-      <section className="text-center mb-10 space-x-4 max-w-xl w-full mx-auto">
-        <input className="border-2 border-gray-300 rounded-md focus:border-orange-200 outline-none p-3 w-2/3 lg:w-4/5" type="text" placeholder="タスクを追加" />
-        <button className="text-lg text-white bg-orange-300 hover:bg-orange-500 rounded-md p-2.5">追加</button>
+      <section className="text-center mb-10 space-x-4 max-w-2xl w-full mx-auto">
+        <input
+          className="border-2 border-gray-300 rounded-md focus:border-orange-200 outline-none p-3 w-2/3 lg:w-4/5 placeholder-shown:border-gray-50"
+          type="text"
+          placeholder="タスクを追加"
+        />
+        <button className="text-lg text-white bg-orange-300 hover:bg-orange-500 rounded-md p-2.5">
+          追加
+        </button>
       </section>
     </>
   );
 };
 
-const TaskList = () => {
+const TaskListView = () => {
   return (
     <>
-      <section className="mb-8 max-w-2xl">
-        <h2 className="text-xl md:text-2xl text-center font-semibold text-gray-700 mb-4">
-          ・完了したらチェックしよう!
+      <section className="mb-8 max-w-xl w-full">
+        <h2 className="text-xl md:text-2xl text-center font-semibold text-gray-700 mb-6">
+          ・ 完了したらチェックするだけ !
         </h2>
-        <div className="bg-gray-100 p-6 rouded-md">
-          <ul className="space-y-4">
-            <li className="flex items-center justify-between p-4 rounded-md">
-              <div className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  className="form-checkbox h-4 w-4 text-blue-600"
-                />
-                <p>タスク1</p>
-              </div>
-              <button className="text-red-400 bg-red-100 p-2 rounded-sm">
-                消す
-              </button>
-            </li>
-            <li className="flex items-center justify-between p-4 rounded-md">
-              <div className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  className="form-checkbox h-4 w-4 text-blue-600"
-                />
-                <p>タスク2</p>
-              </div>
-              <button className="text-red-400 bg-red-100 p-2 rounded-sm">
-                消す
-              </button>
-            </li>
-          </ul>
-        </div>
+        <TaskListRow />
       </section>
     </>
+  );
+};
+
+const TaskListRow = () => {
+  return (
+    <div className="w-full">
+      <ul className="space-y-4">
+        <li className="flex items-center justify-around p-3 rounded-md bg-orange-50">
+          <div className="flex items-center space-x-2">
+            <input type="checkbox" id="checkbox1" className="w-4 h-4" />
+            <label htmlFor="checkbox1" className="text-lg md:text-xl">
+              タスク1
+            </label>
+          </div>
+          <button className="text-red-400 bg-red-100 p-2 rounded-md">
+            消す
+          </button>
+        </li>
+        <li className="flex items-center justify-around p-3 rounded-md bg-orange-50">
+          <div className="flex items-center space-x-2">
+            <input type="checkbox" id="checkbox2" className="w-4 h-4" />
+            <label htmlFor="checkbox2" className="text-lg md:text-xl">
+              タスク2
+            </label>
+          </div>
+          <button className="text-red-400 bg-red-100 p-2 rounded-md">
+            消す
+          </button>
+        </li>
+      </ul>
+    </div>
   );
 };
 
@@ -89,7 +99,7 @@ export const TaskBattle = () => {
       <main className="flex flex-col items-center p-8 bg-blue-50 min-h-screen ">
         <Title />
         <InputTask />
-        <TaskList />
+        <TaskListView />
         <ScoreBoard />
       </main>
     </>
