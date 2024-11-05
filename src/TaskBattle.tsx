@@ -29,32 +29,30 @@ const InputTask = () => {
 
 const TaskListRow = () => {
   return (
-    <div className="w-full">
-      <ul className="space-y-4">
-        <li className="flex items-center justify-around p-3 rounded-md bg-orange-50">
+      <ul className="w-4/5 md:w-5/6 lg:w-full mx-auto space-y-4">
+        <li className="flex items-center justify-around p-2 md:p-3 rounded-md bg-orange-50">
           <div className="flex items-center space-x-2">
             <input type="checkbox" id="checkbox1" className="w-4 h-4" />
             <label htmlFor="checkbox1" className="text-lg md:text-xl">
               タスク1
             </label>
           </div>
-          <button className="text-red-400 bg-red-100 p-2 rounded-md">
+          <button className="text-red-500 bg-red-100 p-2 rounded-md hover:bg-red-200 hover:shadow-md">
             消す
           </button>
         </li>
-        <li className="flex items-center justify-around p-3 rounded-md bg-orange-50">
+        <li className="flex items-center justify-around p-2 md:p-3 rounded-md bg-orange-50">
           <div className="flex items-center space-x-2">
             <input type="checkbox" id="checkbox2" className="w-4 h-4" />
             <label htmlFor="checkbox2" className="text-lg md:text-xl">
               タスク2
             </label>
           </div>
-          <button className="text-red-400 bg-red-100 p-2 rounded-md">
+          <button className="text-red-500 bg-red-100 p-2 rounded-md hover:bg-red-200 hover:shadow-md">
             消す
           </button>
         </li>
       </ul>
-    </div>
   );
 };
 
