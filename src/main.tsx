@@ -1,10 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { App } from "./components/App";
-import "./styles/index.css";
+import { Tastle } from "./Tastle";
+import "./index.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
+    <Tastle />
   </StrictMode>
 );
