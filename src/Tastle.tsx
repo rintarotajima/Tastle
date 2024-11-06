@@ -12,11 +12,7 @@ const Title = () => {
   );
 };
 
-type InputTaskProps = {
-  onAddTask: () => void;
-};
-
-const InputTask: FC<InputTaskProps> = ({ onAddTask }) => {
+const InputTask = () => {
   return (
     <>
       <section className="text-center mb-10 space-x-4 max-w-2xl w-full mx-auto">
@@ -25,10 +21,7 @@ const InputTask: FC<InputTaskProps> = ({ onAddTask }) => {
           type="text"
           placeholder="タスクを追加"
         />
-        <button
-          onClick={onAddTask}
-          className="text-lg text-white bg-orange-300 hover:bg-orange-500 rounded-md p-2.5"
-        >
+        <button className="text-lg text-white bg-orange-300 hover:bg-orange-500 rounded-md p-2.5">
           追加
         </button>
       </section>
@@ -42,10 +35,9 @@ type Task = {
 };
 type TaskListRowProps = {
   tasks: Task[];
-  onDeleteTask: (taskId: number) => void;
 };
 
-const TaskListRow: FC<TaskListRowProps> = ({ tasks, onDeleteTask }) => {
+const TaskListRow: FC<TaskListRowProps> = ({ tasks }) => {
   return (
     <ul className="w-4/5 md:w-5/6 lg:w-full mx-auto space-y-4">
       {tasks.map((task) => (
@@ -59,10 +51,7 @@ const TaskListRow: FC<TaskListRowProps> = ({ tasks, onDeleteTask }) => {
               {task.title}
             </label>
           </div>
-          <button
-            onClick={() => onDeleteTask(task.id)}
-            className="text-red-500 bg-red-100 p-2 rounded-md hover:bg-red-200 hover:shadow-md"
-          >
+          <button className="text-red-500 bg-red-100 p-2 rounded-md hover:bg-red-200 hover:shadow-md">
             消す
           </button>
         </li>
@@ -73,17 +62,16 @@ const TaskListRow: FC<TaskListRowProps> = ({ tasks, onDeleteTask }) => {
 
 type TaskListViewProps = {
   tasks: Task[];
-  onDeleteTask: (taskId: number) => void;
 };
 
-const TaskListView: FC<TaskListViewProps> = ({ tasks, onDeleteTask }) => {
+const TaskListView: FC<TaskListViewProps> = ({ tasks }) => {
   return (
     <>
       <section className="mb-10 max-w-xl w-full">
         <h2 className="text-xl md:text-2xl text-center font-semibold text-gray-700 mb-6">
           ・ 終わったらチェック !
         </h2>
-        <TaskListRow tasks={tasks} onDeleteTask={onDeleteTask} />
+        <TaskListRow tasks={tasks} />
       </section>
     </>
   );
@@ -155,19 +143,13 @@ export const Tastle = () => {
     { score: 1, label: "タスク進捗スコア", color: "bg-green-100" },
     { score: 2, label: "全タスク-1のスコア", color: "bg-red-200" },
   ];
-  const handleAddTask = () => {
-    console.log("タスクを追加");
-  };
-  const handleDeleteTask = (taskId: number) => {
-    console.log("タスクを削除", taskId);
-  };
 
   return (
     <>
       <main className="flex flex-col items-center p-8 bg-blue-50 min-h-screen">
         <Title />
-        <InputTask onAddTask={handleAddTask} />
-        <TaskListView tasks={tasks} onDeleteTask={handleDeleteTask} />
+        <InputTask />
+        <TaskListView tasks={tasks} />
         <ScoreBoard scores={scores} />
       </main>
     </>
