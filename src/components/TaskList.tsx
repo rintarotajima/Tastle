@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { Task } from "../types";
 import { TaskItem } from "./TaskItem";
-// import { TaskItem } from "./TaskItem";
 
 type Props = {
   tasks: Task[];
