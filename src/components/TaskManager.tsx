@@ -1,26 +1,16 @@
-import { useState } from "react";
-import { Task } from "../types";
+import { FC } from "react";
 import { TaskInput } from "./TaskInput";
 import { TaskList } from "./TaskList";
+import { useTaskList } from "../hooks/userTaskList";
 
 /* タスク関連を管理するコンポーネント */
 
-export const TaskManager = () => {
-  // タスクを格納する配列をuseStateで定義
-  const [tasks, setTasks] = useState<Task[]>([]);
-
-  // タスクを追加するボタンを押したときの処理
-  const addTask = (title: string) => {
-    const newTask: Task = { 
-      id: tasks.length + 1,
-      title,
-    };
-    setTasks([...tasks, newTask]);
-  };
+export const TaskManager: FC = () => {
+  const {tasks, addTask} = useTaskList();
 
   return (
     <>
-        <TaskInput addTask={addTask} />
+        <TaskInput addTask={addTask}  />
         <TaskList tasks={tasks} />
     </>
   )
