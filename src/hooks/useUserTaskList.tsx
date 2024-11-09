@@ -1,26 +1,19 @@
 import { useState } from "react";
-
-type Task = {
-  id: number;
-  title: string;
-};
+import { Task } from "../types";
 
 //userTaskListの戻り値の型定義
-interface UserTaskListReturn {
+interface useUserTaskListReturn {
   tasks: Task[];
   addTask: (title: string) => void;
 }
 
-export const useTaskList = (): UserTaskListReturn => {
-
-  // 表示するタスクはユーザによって変化する→useStateで定義
+export const useUserTaskList = (): useUserTaskListReturn => {
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  // 新しいタスクを追加する関数
   const addTask = (title: string) => {
-    // 新しいタスクのプロパティ
+    if (!title.trim()) return;
     const newTask: Task = {
-      id: tasks.length + 1,
+      id: tasks.length > 0 ? Math.max(...tasks.map((task) => task.id)) + 1 : 1,
       title,
     };
     setTasks([...tasks, newTask]);
