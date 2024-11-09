@@ -25,13 +25,6 @@ export const TaskInput: FC<Props> = ({ addTask }) => {
     }
   };
 
-  // 追加ボタンを押したときの処理
-  // const onAddTask = () => {
-  //   if (task.trim() === "") return;
-  //   addTask(task);
-  //   setTask("");
-  // };
-
   return (
     <>
       <section className="text-center mb-10  max-w-2xl w-full mx-auto">
