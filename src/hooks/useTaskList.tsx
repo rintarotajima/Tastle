@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Task } from "../types";
 
 //userTaskListの戻り値の型定義
-interface useUserTaskListReturn {
+interface useTaskListReturn {
   tasks: Task[];
   addTask: (title: string) => void;
 }
 
-export const useUserTaskList = (): useUserTaskListReturn => {
+export const useTaskList = (): useTaskListReturn => {
   const [tasks, setTasks] = useState<Task[]>([]);
 
   const addTask = (title: string) => {
