@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { useTaskInput } from "../hooks/useTaskInput";
+import { TaskAddButton } from "./TaskAddButton";
 
 type Props = {
   addTask: (title: string) => void;
@@ -9,7 +10,6 @@ type Props = {
 
 export const TaskInput: FC<Props> = ({ addTask }) => {
   const { taskInput, handleInputChange, handleSubmit } = useTaskInput(addTask);
-  
 
   return (
     <>
@@ -22,12 +22,7 @@ export const TaskInput: FC<Props> = ({ addTask }) => {
             value={taskInput}
             onChange={handleInputChange}
           />
-          <button
-            type="submit"
-            className="text-lg text-white bg-orange-300 hover:bg-orange-500 rounded-md p-2.5"
-          >
-            追加
-          </button>
+          <TaskAddButton />
         </form>
       </section>
     </>
