@@ -1,14 +1,14 @@
 import { useState } from "react";
 
-interface useUserTaskInputReturn {
+interface useTaskInputReturn {
   taskInput: string;
   handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (event: React.FormEvent) => void;
 }
 
-export const useUserTaskInput = (
+export const useTaskInput = (
   addTask: (title: string) => void
-): useUserTaskInputReturn => {
+): useTaskInputReturn => {
   const [taskInput, setTaskInput] = useState("");
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

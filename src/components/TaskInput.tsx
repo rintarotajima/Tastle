@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useUserTaskInput } from "../hooks/useUserTaskInput";
+import { useTaskInput } from "../hooks/useTaskInput";
 
 type Props = {
   addTask: (title: string) => void;
@@ -8,7 +8,7 @@ type Props = {
 /* タスクの入力と追加を担当するコンポーネント */
 
 export const TaskInput: FC<Props> = ({ addTask }) => {
-  const { taskInput, handleInputChange, handleSubmit } = useUserTaskInput(addTask);
+  const { taskInput, handleInputChange, handleSubmit } = useTaskInput(addTask);
   
 
   return (

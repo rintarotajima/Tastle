@@ -1,12 +1,12 @@
 import { FC } from "react";
 import { TaskInput } from "./TaskInput";
 import { TaskList } from "./TaskList";
-import { useUserTaskList } from "../hooks/useUserTaskList";
+import { useTaskList } from "../hooks/useTaskList";
 
 /* タスク関連を管理するコンポーネント */
 
 export const TaskManager: FC = () => {
-  const {tasks, addTask} = useUserTaskList();
+  const {tasks, addTask} = useTaskList();
   
   return (
     <>
