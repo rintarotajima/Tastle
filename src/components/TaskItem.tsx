@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Task } from "../types";
+import { TaskDeleteButton } from "./TaskDeleteButton";
 
 type Props = {
   task: Task;
@@ -13,9 +14,7 @@ export const TaskItem: FC<Props> = ({ task }) => {
         <input type="checkbox" name={`${task.id}`} id={`${task.id}`} className="w-4 h-4" />
         <label htmlFor={`${task.id}`} className="text-lg md:text-xl">{task.title}</label>
       </div>
-      <button className="text-red-500 bg-red-100 p-2 rounded-md hover:bg-red-200 hover:shadow-md">
-        消す
-      </button>
+      <TaskDeleteButton />
     </li>
   );
 };
