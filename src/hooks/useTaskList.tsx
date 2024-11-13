@@ -5,6 +5,7 @@ import { Task } from "../types";
 interface useTaskListReturn {
   tasks: Task[];
   addTask: (title: string) => void;
+  deleteTask: (taskId: number) => void;
 }
 
 export const useTaskList = (): useTaskListReturn => {
@@ -19,5 +20,11 @@ export const useTaskList = (): useTaskListReturn => {
     setTasks([...tasks, newTask]);
   };
 
-  return { tasks, addTask };
+  // タスクを削除する関数：戻り値なし
+  // 削除するタスクのidを引数、idと一致しないタスクをフィルター
+  const deleteTask = (taskId: number) => {
+    setTasks(tasks.filter((task) => task.id !== taskId));
+  };
+
+  return { tasks, addTask, deleteTask };
 };

@@ -6,12 +6,12 @@ import { useTaskList } from "../hooks/useTaskList";
 /* タスク関連を管理するコンポーネント */
 
 export const TaskManager: FC = () => {
-  const {tasks, addTask} = useTaskList();
-  
+  const { tasks, addTask, deleteTask } = useTaskList();
+
   return (
     <>
-        <TaskInput addTask={addTask}  />
-        <TaskList tasks={tasks} />
+      <TaskInput addTask={addTask} />
+      <TaskList tasks={tasks} deleteTask={deleteTask} />
     </>
-  )
+  );
 };
