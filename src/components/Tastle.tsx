@@ -11,17 +11,27 @@ export const Tastle = () => {
 
   const handleToggleTask = (taskId: number) => {
     const completed = toggleTaskCompletion(taskId); // タスクの新しい完了状態を取得
-    updateScore("タスク遂行スコア", tasks, completed); // 完了状態に応じてスコアを変更
-    updateScore("全タスク-1スコア", tasks);
+    if (completed !== undefined) {
+      // タスク遂行スコアを更新
+      updateScore("タスク遂行スコア", tasks, !completed, completed);
+    }
   };
-  
+
+  const handleAddTask = (title: string) => {
+    addTask(title); // タスクを追加
+  };
+
+  const handleDeleteTask = (taskId: number) => {
+    deleteTask(taskId); // タスクを削除
+  };
+
   return (
     <main className="flex flex-col items-center p-8 bg-blue-50 min-h-screen">
       <Title />
-      <TaskInput addTask={addTask} />
+      <TaskInput addTask={handleAddTask} />
       <TaskList
         tasks={tasks}
-        deleteTask={deleteTask}
+        deleteTask={handleDeleteTask}
         toggleTaskCompletion={handleToggleTask}
       />
       <ScoreBoard scores={scores} />

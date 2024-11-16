@@ -7,12 +7,13 @@ interface useTaskListReturn {
   tasks: Task[];
   addTask: (title: string) => void;
   deleteTask: (taskId: number) => void;
-  toggleTaskCompletion: (taskId: number) => boolean;
+  toggleTaskCompletion: (taskId: number) => boolean | undefined;
 }
 
 export const useTaskList = (): useTaskListReturn => {
   const [tasks, setTasks] = useState<Task[]>([]);
 
+  // タスク内容を受け取り、既存のタスクデータを更新する関数
   const addTask = (title: string) => {
     if (!title.trim()) return;
     const newTask: Task = {
@@ -23,22 +24,20 @@ export const useTaskList = (): useTaskListReturn => {
     setTasks([...tasks, newTask]);
   };
 
+  // タスクidを受け取り、idと合うタスクデータを削除する関数
   const deleteTask = (taskId: number) => {
     setTasks(tasks.filter((task) => task.id !== taskId));
   };
 
-  const toggleTaskCompletion = (taskId: number): boolean => {
-    let taskCompleted = false;
-    setTasks((prevTasks) =>
-      prevTasks.map((task) => {
-        if (task.id === taskId) {
-          taskCompleted = !task.completed;
-          return { ...task, completed: taskCompleted}
-        }
-        return task;
-      })
-    );
-    return taskCompleted; // 完了状態を返す
+  const toggleTaskCompletion = (taskId: number): boolean | undefined => {
+    const taskIndex = tasks.findIndex((task) => task.id === taskId);
+    if (taskIndex !== -1) {
+      const updatedTasks = [...tasks];
+      updatedTasks[taskIndex].completed = !updatedTasks[taskIndex].completed;
+      setTasks(updatedTasks);
+      return updatedTasks[taskIndex].completed; // 新しい完了状態を返す
+    }
+    return undefined;
   };
 
   return { tasks, addTask, deleteTask, toggleTaskCompletion };

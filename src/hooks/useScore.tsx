@@ -20,17 +20,20 @@ export const useScore = () => {
   const updateScore = (
     label: string,
     tasks: { id: number; completed: boolean }[],
-    completed?: boolean
+    previousCompleted?: boolean,
+    currentCompleted?: boolean
   ) => {
     setScores((prevScores) =>
       prevScores.map((score) => {
         if (score.label === label) {
-          if (label === "タスク遂行スコア" && completed !== undefined) {
+          if (label === "タスク遂行スコア") {
             // タスク遂行スコア: 完了した場合 +1、未完了の場合 -1
-            return {
-              ...score,
-              score: score.score + (completed === true ? 1 : -1),
-            };
+            if (previousCompleted === false && currentCompleted === true) {
+              return { ...score, score: score.score + 1 };
+            }
+            if (previousCompleted === true && currentCompleted === false) {
+              return { ...score, score: score.score - 1 };
+            }
           }
 
           if (label === "全タスク-1スコア") {
