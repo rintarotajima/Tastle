@@ -1,23 +1,22 @@
 import { FC } from "react";
 import { Score } from "../types";
+import { ScoreItem } from "./ScoreItem";
 
-type Props = Score
+type Props = {
+  scores: Score[];
+};
 
-export const ScoreBoard: FC<Props> = ({score, label, color}) => {
+export const ScoreBoard: FC<Props> = ({ scores }) => {
   return (
-    <>
-      <div
-        className={`${color} p-4 rounded-md text-center w-3/4 md:w-1/2 space-y-3 mx-auto mb-3 md:mb-0`}
-      >
-        <span className="text-5xl md:text-6xl font-bold font-mono">
-          {score}
-        </span>
-        <p
-          className={`font-semibold ${color === "bg-green-100" ? "text-green-500" : "text-red-500"}`}
-        >
-          {label}
-        </p>
+    <section className="mb-8 max-w-xl md:max-w-2xl w-full">
+      <h2 className="text-xl md:text-2xl text-center font-semibold text-gray-700 mb-7">
+        ・ 現在のスコア
+      </h2>
+      <div className="flex flex-col md:flex-row md:space-x-6">
+        {scores.map((scoreItem, index) => (
+          <ScoreItem key={index} {...scoreItem} />
+        ))}
       </div>
-    </>
+    </section>
   );
 };

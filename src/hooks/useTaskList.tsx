@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Task } from "../types";
 
-//userTaskListの戻り値の型定義
+// タスクリストを構成するタスクとそのロジックを担当しているフック
+
 interface useTaskListReturn {
   tasks: Task[];
   addTask: (title: string) => void;
   deleteTask: (taskId: number) => void;
+  toggleTaskCompletion: (taskId: number) => boolean;
 }
 
 export const useTaskList = (): useTaskListReturn => {
@@ -16,15 +18,28 @@ export const useTaskList = (): useTaskListReturn => {
     const newTask: Task = {
       id: tasks.length > 0 ? Math.max(...tasks.map((task) => task.id)) + 1 : 1,
       title,
+      completed: false,
     };
     setTasks([...tasks, newTask]);
   };
 
-  // タスクを削除する関数：戻り値なし
-  // 削除するタスクのidを引数、idと一致しないタスクをフィルター
   const deleteTask = (taskId: number) => {
     setTasks(tasks.filter((task) => task.id !== taskId));
   };
 
-  return { tasks, addTask, deleteTask };
+  const toggleTaskCompletion = (taskId: number): boolean => {
+    let taskCompleted = false;
+    setTasks((prevTasks) =>
+      prevTasks.map((task) => {
+        if (task.id === taskId) {
+          taskCompleted = !task.completed;
+          return { ...task, completed: taskCompleted}
+        }
+        return task;
+      })
+    );
+    return taskCompleted; // 完了状態を返す
+  };
+
+  return { tasks, addTask, deleteTask, toggleTaskCompletion };
 };
