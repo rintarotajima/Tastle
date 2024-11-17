@@ -17,21 +17,13 @@ export const Tastle = () => {
     }
   };
 
-  const handleAddTask = (title: string) => {
-    addTask(title); // タスクを追加
-  };
-
-  const handleDeleteTask = (taskId: number) => {
-    deleteTask(taskId); // タスクを削除
-  };
-
   return (
     <main className="flex flex-col items-center p-8 bg-blue-50 min-h-screen">
       <Title />
-      <TaskInput addTask={handleAddTask} />
+      <TaskInput addTask={addTask} />
       <TaskList
         tasks={tasks}
-        deleteTask={handleDeleteTask}
+        deleteTask={deleteTask}
         toggleTaskCompletion={handleToggleTask}
       />
       <ScoreBoard scores={scores} />

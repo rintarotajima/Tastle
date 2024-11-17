@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Task } from "../types";
 
-// タスクリストを構成するタスクとそのロジックを担当しているフック
-
 interface useTaskListReturn {
   tasks: Task[];
   addTask: (title: string) => void;
@@ -29,6 +27,7 @@ export const useTaskList = (): useTaskListReturn => {
     setTasks(tasks.filter((task) => task.id !== taskId));
   };
 
+  // タスクidを受け取り、idと合うタスクの完了状態を切り替える関数
   const toggleTaskCompletion = (taskId: number): boolean | undefined => {
     const taskIndex = tasks.findIndex((task) => task.id === taskId);
     if (taskIndex !== -1) {
