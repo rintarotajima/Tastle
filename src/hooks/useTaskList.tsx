@@ -13,13 +13,14 @@ export const useTaskList = (): useTaskListReturn => {
 
   // タスク内容を受け取り、既存のタスクデータを更新する関数
   const addTask = (title: string) => {
-    if (!title.trim()) return;
+    if (!title) return;
     const newTask: Task = {
       id: tasks.length > 0 ? Math.max(...tasks.map((task) => task.id)) + 1 : 1,
       title,
       completed: false,
     };
-    setTasks([...tasks, newTask]);
+    const updatedTasks = [...tasks, newTask];
+    setTasks(updatedTasks);
   };
 
   // タスクidを受け取り、idと合うタスクデータを削除する関数

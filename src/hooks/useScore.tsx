@@ -39,7 +39,7 @@ export const useScore = () => {
           if (label === "全タスク-1スコア") {
             // 全タスク-1スコア: タスク数 - 1 (ただし最低値は 0)
             const taskCount = tasks.length;
-            const newScore = Math.max(0, taskCount - 1);
+            const newScore = taskCount <= 1 ? 0 : taskCount - 1;
             return { ...score, score: newScore };
           }
         }
