@@ -27,13 +27,15 @@ export const useScore = () => {
       prevScores.map((score) => {
         if (score.label === label) {
           if (label === "タスク遂行スコア") {
+            let newScore = score.score;
             // タスク遂行スコア: 完了した場合 +1、未完了の場合 -1
             if (previousCompleted === false && currentCompleted === true) {
-              return { ...score, score: score.score + 1 };
+              newScore = score.score + 1;
             }
             if (previousCompleted === true && currentCompleted === false) {
-              return { ...score, score: score.score - 1 };
+              newScore = score.score - 1;
             }
+            return {...score, score: Math.max(0, newScore)}
           }
 
           if (label === "全タスク-1スコア") {
