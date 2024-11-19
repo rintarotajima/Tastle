@@ -16,9 +16,10 @@ export const Tastle = () => {
   };
 
   const handleDeleteTask = (taskId: number) => {
-    const updatedTasks = tasks.filter((task) => task.id !== taskId); // 削除後のタスクリストを計算
     deleteTask(taskId); // タスク削除処理
+    const updatedTasks = tasks.filter((task) => task.id !== taskId); // 削除後のタスクリストを計算
     updateScore("全タスク-1スコア", updatedTasks); // 更新されたタスクリストを渡してスコアを更新
+    updateScore("タスク遂行スコア", updatedTasks, true, false); 
   };
 
   const handleToggleTask = (taskId: number) => {
