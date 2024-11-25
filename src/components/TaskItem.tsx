@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { Task } from "../types";
 import { TaskDeleteButton } from "./TaskDeleteButton";
+import { Task } from "../types/task";
 
 type Props = {
   task: Task;

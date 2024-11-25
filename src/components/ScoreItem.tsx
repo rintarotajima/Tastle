@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Score } from "../types";
+import { Score } from "../types/score";
 
 type Props = Score
 

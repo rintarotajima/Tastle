@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Task } from "../types";
+import { Task } from "../types/task";
 
-interface useTaskListReturn {
+
+type useTaskListReturn = {
   tasks: Task[];
   addTask: (title: string) => void;
   deleteTask: (taskId: number) => void;

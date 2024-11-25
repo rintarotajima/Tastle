@@ -12,21 +12,20 @@ export const Tastle = () => {
   const handleAddTask = (title: string) => {
     addTask(title);
     const updatedTasks = [...tasks, { id: Date.now(), completed: false }]; // 新しいタスクを仮追加
-    updateScore("全タスク-1スコア", updatedTasks);
+    updateScore("試合数-1", updatedTasks);
   };
 
   const handleDeleteTask = (taskId: number) => {
     deleteTask(taskId); // タスク削除処理
     const updatedTasks = tasks.filter((task) => task.id !== taskId); // 削除後のタスクリストを計算
-    updateScore("全タスク-1スコア", updatedTasks); // 更新されたタスクリストを渡してスコアを更新
-    updateScore("タスク遂行スコア", updatedTasks, true, false); 
+    updateScore("試合数-1", updatedTasks); // 更新されたタスクリストを渡してスコアを更新
+    updateScore("勝った試合", updatedTasks, true, false); 
   };
 
   const handleToggleTask = (taskId: number) => {
     const completed = toggleTaskCompletion(taskId); // タスクの新しい完了状態を取得
     if (completed !== undefined) {
-      // タスク遂行スコアを更新
-      updateScore("タスク遂行スコア", tasks, !completed, completed);
+      updateScore("勝った試合", tasks, !completed, completed);
     }
   };
 

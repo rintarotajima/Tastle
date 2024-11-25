@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-interface useTaskInputReturn {
+type useTaskInputReturn = {
   taskInput: string;
   handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (event: React.FormEvent) => void;

@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { Score } from "../types";
 import { ScoreItem } from "./ScoreItem";
+import { Score } from "../types/score";
 
 type Props = {
   scores: Score[];

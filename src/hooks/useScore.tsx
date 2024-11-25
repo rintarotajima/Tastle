@@ -1,17 +1,16 @@
 import { useState } from "react";
-import { Score } from "../types";
+import { Score } from "../types/score";
 
 export const useScore = () => {
-  // 初期状態
   const [scores, setScores] = useState<Score[]>([
     {
       score: 0,
-      label: "タスク遂行スコア",
+      label: "勝った試合",
       color: "bg-green-100",
     },
     {
       score: 0,
-      label: "全タスク-1スコア",
+      label: "試合数-1",
       color: "bg-red-200",
     },
   ]);
@@ -26,20 +25,20 @@ export const useScore = () => {
     setScores((prevScores) =>
       prevScores.map((score) => {
         if (score.label === label) {
-          if (label === "タスク遂行スコア") {
+          if (label === "勝った試合") {
             let newScore = score.score;
-            // タスク遂行スコア: 完了した場合 +1、未完了の場合 -1
+            // 勝った試合: 完了 +1、未完了 -1
             if (previousCompleted === false && currentCompleted === true) {
               newScore = score.score + 1;
             }
             if (previousCompleted === true && currentCompleted === false) {
               newScore = score.score - 1;
             }
-            return {...score, score: Math.max(0, newScore)}
+            return { ...score, score: Math.max(0, newScore) };
           }
 
-          if (label === "全タスク-1スコア") {
-            // 全タスク-1スコア: タスク数 - 1 (ただし最低値は 0)
+          if (label === "試合数-1") {
+            // 試合数-1: タスク数 - 1 (ただし最低値は 0)
             const taskCount = tasks.length;
             const newScore = taskCount <= 1 ? 0 : taskCount - 1;
             return { ...score, score: newScore };
