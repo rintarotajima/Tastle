@@ -1,9 +1,9 @@
-import { Title } from "./Title";
-import { TaskInput } from "./TaskInput";
-import { TaskList } from "./TaskList";
-import { useTaskList } from "../hooks/useTaskList";
-import { ScoreBoard } from "./ScoreBoard";
-import { useScore } from "../hooks/useScore";
+import { Title } from "./components/Title";
+import { TaskInput } from "./components/TaskInput";
+import { TaskList } from "./components/TaskList";
+import { useTaskList } from "./hooks/useTaskList";
+import { ScoreBoard } from "./components/ScoreBoard";
+import { useScore } from "./hooks/useScore";
 
 export const Tastle = () => {
   const { tasks, addTask, deleteTask, toggleTaskCompletion } = useTaskList();
@@ -19,7 +19,7 @@ export const Tastle = () => {
     deleteTask(taskId); // タスク削除処理
     const updatedTasks = tasks.filter((task) => task.id !== taskId); // 削除後のタスクリストを計算
     updateScore("試合数-1", updatedTasks); // 更新されたタスクリストを渡してスコアを更新
-    updateScore("勝った試合", updatedTasks, true, false); 
+    updateScore("勝った試合", updatedTasks, true, false);
   };
 
   const handleToggleTask = (taskId: number) => {
