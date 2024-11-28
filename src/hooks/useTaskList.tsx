@@ -1,16 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Task } from "../types/task";
-
 
 type useTaskListReturn = {
   tasks: Task[];
   addTask: (title: string) => void;
   deleteTask: (taskId: number) => void;
   toggleTaskCompletion: (taskId: number) => boolean | undefined;
-}
+};
 
 export const useTaskList = (): useTaskListReturn => {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<Task[]>(() => {
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks))
+  }, [tasks])
 
   // タスク内容を受け取り、既存のタスクデータを更新する関数
   const addTask = (title: string) => {
