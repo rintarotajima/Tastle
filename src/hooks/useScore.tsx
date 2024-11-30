@@ -1,19 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Score } from "../types/score";
 
 export const useScore = () => {
-  const [scores, setScores] = useState<Score[]>([
-    {
-      score: 0,
-      label: "勝った試合",
-      color: "bg-green-100",
-    },
-    {
-      score: 0,
-      label: "試合数-1",
-      color: "bg-red-200",
-    },
-  ]);
+  const [scores, setScores] = useState<Score[]>(() => {
+    const savedScores = localStorage.getItem("scores");
+    return savedScores
+      ? JSON.parse(savedScores)
+      : [
+          {
+            score: 0,
+            label: "勝った試合",
+            color: "bg-green-100",
+          },
+          {
+            score: 0,
+            label: "試合数-1",
+            color: "bg-red-200",
+          },
+        ];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("scores", JSON.stringify(scores));
+  }, [scores]);
 
   // スコア更新ロジック
   const updateScore = (
